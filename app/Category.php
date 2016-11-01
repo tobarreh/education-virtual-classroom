@@ -10,6 +10,11 @@ class Category extends Model
     	'name'
     ];
 
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject');
+    }
+
     public function scopeSearch($query, $name)
     {
     	return $query->where('name', 'like', "%$name%");

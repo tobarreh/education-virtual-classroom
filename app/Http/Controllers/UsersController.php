@@ -8,10 +8,6 @@ use App\User;
 
 class UsersController extends Controller
 {
-    //TODO (cambiar a $me)
-    protected $user_id;
-    protected $user_type;
-
     public function __construct()
     {
         
@@ -21,12 +17,11 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         //TODO corregir auth (pasar al construct)
-        $this->user_id = Auth::user()->id;
-        $this->user_type = Auth::user()->type;
+        $me = Auth::user();
 
-        $users = User::search($request->name)->orderBy('name', 'ASC')->paginate(10);
-    
-        return view("$this->user_type" . '.users.index')->with('users', $users);
+        $users = User::search($request->name)->orderBy('name', 'ASC')->paginate(10);    
+        
+        return view("$me->type" . '.users.index')->with('users', $users);
     }
 
     public function create()
@@ -43,9 +38,9 @@ class UsersController extends Controller
     {
         //TODO corregir auth (pasar al construct)
         $me = Auth::user();
-        
-        $user = User::find($id);
 
+        $user = User::find($id);
+        
         return view('common.users.show')
             ->with('me', $me)
             ->with('user', $user);
@@ -55,9 +50,9 @@ class UsersController extends Controller
     {
         //TODO corregir auth (pasar al construct)
         $me = Auth::user();
+
         $user = User::find($id);
         
-
         return view('common.users.edit')
             ->with('me', $me)
             ->with('user', $user);   
@@ -66,13 +61,13 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //TODO corregir auth (pasar al construct)
-        $this->user_id = Auth::user()->id;
+        $me = Auth::user();
 
         $user = User::find($id);
         $user->fill($request->all());
         $user->save();
 
-        if ($user->id == $this->user_id) {
+        if ($user->id == $me->id) {
             
             flash('Tu perfil ha sido actualizado correctamente', 'info');
             return redirect()->route('users.show', $user->id);

@@ -35,4 +35,10 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function(){
 			'uses' 	=> 'CategoriesController@destroy',
 			'as' 	=> 'categories.destroy'
 	]);
+
+	Route::resource('subjects','SubjectsController');
+		Route::get('subjects/{id}/destroy', [
+			'uses' 	=> 'SubjectsController@destroy',
+			'as' 	=> 'subjects.destroy'
+	]);
 });

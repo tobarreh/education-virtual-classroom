@@ -17,7 +17,7 @@
                         <li><a href="{{ route('home.index') }}">Inicio</a></li>
                         <li><a href="{{ route('users.index') }}">Usuarios</a></li>
                         <li><a href="{{ route('categories.index') }}">Categorias</a></li>
-                        <li><a href="">Materias</a></li>
+                        <li><a href="{{ route('subjects.index') }}">Materias</a></li>
                         <li><a href="">Articulos</a></li>
                         <li><a href="">Tags</a></li>
                     @elseif (Auth::user()->type == 'professor')

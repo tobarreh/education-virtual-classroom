@@ -32,7 +32,9 @@
 
 		@include('template.partials.errors')
 
-		@yield('title', '')
+		<div class="row">
+			<h4>@yield('title', '')</h4>
+		</div>
 
 		@yield('content')
 	</section>
