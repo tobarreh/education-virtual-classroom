@@ -1,0 +1,112 @@
+
+/* Profile */
+.user-info {
+  background-image: url("https://mozillafestival.org/assets/images/hero/home/home2-cropped.jpg");
+
+  color: #FFF;
+  background-size: cover;
+  height: 145px;
+  padding: 5px 20px 10px;
+  position: relative;
+}
+
+.user-info-all {
+    height: 140px;
+    max-width: 100%;
+    margin: 0px auto;
+    position: relative;
+}
+
+.user-info-basic {
+    float: left;
+    position: relative;
+    padding: 10px 10px 10px 0px;
+}
+
+.user-pic-container {
+    top: 0px;
+    border-radius: 15px;
+    border: 3px solid #FFF;
+    float: left;
+    cursor: pointer;
+}
+
+.user-pic {
+    width: 80px;
+    height: 80px;
+    padding: 15px 5px;
+}
+
+.user-details {
+    opacity: 1;
+    cursor: pointer;
+    box-sizing: border-box;
+    
+    float: left;
+    line-height: 18px;
+    margin-left: 10px;
+    max-height: 135px;
+    max-width: 500px;
+    overflow: hidden;
+    padding: 10px 10px 5px;
+}
+
+.user-details:hover {  
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  transition: all 0.2s ease 0s;
+}
+
+.user-name-container {
+    line-height: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-name {
+    color: #FFF;
+    font-size: 24px;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.user-type {
+  color: #FFF;
+  font-size: 16px;
+  margin-top: 8px;
+  max-height: 54px;
+  overflow: hidden;
+}
+
+.user-type-text {
+  color: #AAA;
+  font-size: 16px;
+}
+
+/* Social links */
+
+.social-media-item {
+  display: inline-block;
+  height: 40px;
+  width: 75px;
+}
+
+.social-media-link {
+  height: inherit;
+  width: 40px;
+  display: block;
+  position: absolute;
+}
+
+.social-media-icon {
+  opacity: 0.5;
+  border-radius: 20px;
+  display: block;
+  position: absolute;
+  margin: 2px;
+
+}
+
+.social-media-icon:hover {
+  opacity: 1.0;
+}
