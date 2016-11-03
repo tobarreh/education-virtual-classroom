@@ -9,7 +9,7 @@ class UsersTableDetails extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('type', ['admin', 'professor', 'student', 'guest'])->default('guest')->after('remember_token');
+            $table->enum('type', ['admin', 'professor', 'student'])->default('student')->after('remember_token');
             $table->date('birth_date')->nullable()->after('type');
             $table->string('cell_phone')->nullable()->after('birth_date');
             $table->string('city')->nullable()->after('cell_phone');

@@ -72,12 +72,10 @@ class SubjectsController extends Controller
 
 	 	$subject = Subject::find($id);
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $topics = Topic::topics_by_subject($id)->orderBy('id', 'ASC')->paginate(4);
 
         return view("$me->type" . '.subjects.edit')
             ->with('subject', $subject)
-            ->with('categories', $categories)
-            ->with('topics', $topics);
+            ->with('categories', $categories);
     }
 
     public function update(Request $request, $id)

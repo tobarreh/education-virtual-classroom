@@ -18,11 +18,12 @@
                         <li><a href="{{ route('users.index') }}">Usuarios</a></li>
                         <li><a href="{{ route('categories.index') }}">Categorias</a></li>
                         <li><a href="{{ route('subjects.index') }}">Materias</a></li>
-                        <li><a href="">Articulos</a></li>
-                        <li><a href="">Tags</a></li>
+                        <li><a href="{{ route('topics.index') }}">Temas</a></li>
+                        <li><a href="{{ route('articles.index') }}">Articulos</a></li>
+                        <li><a href="{{ route('tags.index') }}">Tags</a></li>
                     @elseif (Auth::user()->type == 'professor')
                         <li><a href="{{ route('home.index') }}">Inicio</a></li>
-                        <li><a href="">Mis articulos</a></li>
+                        <li><a href="{{ route('articles.index') }}">Mis articulos</a></li>
                     @elseif (Auth::user()->type == 'student')
                         <li><a href="{{ route('home.index') }}">Inicio</a></li>
                     @endif

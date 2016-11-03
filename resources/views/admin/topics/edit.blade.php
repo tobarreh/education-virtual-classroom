@@ -1,17 +1,17 @@
 @extends('template.main')
 
-@section('title', 'Nuevo tema')
+@section('title', 'Editar tema '. "<b> $topic->name </b>")
 
 @section('content')
 <div class="panel panel-body col-md-12">
-	{!! Form::open(['route' => 'topics.store', 'method' => 'POST']) !!}
+	{!! Form::open(['route' => ['topics.update', $topic], 'method' => 'PUT']) !!}﻿
 
 	<div class="form-group row">
     	<div class="col-md-3">
 			{!! Form::label('subject_id', 'Materia') !!}
     	</div>
 		<div class="col-md-2 col-md-offset-2">
-			{!! Form::select('subject_id', $subjects, null, ['class' => 'form-control select-subject', null, 'required']) !!}
+			{!! Form::select('subject_id', $subjects, $topic->subject_id, ['class' => 'form-control select-subject', null, 'required']) !!}
 		</div>
 	</div>
 
@@ -20,12 +20,12 @@
 			{!! Form::label('name', 'Nombre') !!}
     	</div>
 		<div class="col-md-4">
-			{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nombre del tema']) !!}
+			{!! Form::text('name', $topic->name, ['class' => 'form-control', 'placeholder' => 'Nombre del tema']) !!}
 		</div>
 	</div>
 
 	<div class="form-group">
-		{!! Form::submit('Crear', ['class' => 'btn btn-primary pull-right ']) !!}
+		{!! Form::submit('Actualizar', ['class' => 'btn btn-primary pull-right ']) !!}
 	</div>
 
 	{!! Form::close() !!}

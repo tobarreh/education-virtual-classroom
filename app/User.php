@@ -9,6 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = "users";
     protected $fillable = [
         'name', 'email', 'password', 'type', 'birth_date', 'cell_phone', 'city', 'about_me', 'twitter', 'facebook', 'linkedIn', 'youtube'
     ];
@@ -16,6 +17,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function articles()
+    {
+        return $this->hasMany('App\Article');
+    }
 
     public function scopeSearch($query, $name)
     {

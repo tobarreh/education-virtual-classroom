@@ -41,4 +41,23 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function(){
 			'uses' 	=> 'SubjectsController@destroy',
 			'as' 	=> 'subjects.destroy'
 	]);
+
+
+	Route::resource('topics','TopicsController');
+		Route::get('topics/{id}/destroy', [
+			'uses' 	=> 'TopicsController@destroy',
+			'as' 	=> 'topics.destroy'
+		]);
+
+	Route::resource('articles','ArticlesController');
+		Route::get('articles/{id}/destroy', [
+			'uses' 	=> 'ArticlesController@destroy',
+			'as' 	=> 'articles.destroy'
+		]);
+
+		Route::resource('tags','TagsController');
+		Route::get('tags/{id}/destroy', [
+			'uses' 	=> 'TagsController@destroy',
+			'as' 	=> 'tags.destroy'
+		]);
 });

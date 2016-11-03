@@ -38,10 +38,6 @@
 			{!! Form::file('image') !!}
 		</div>
 	</div>
-	
-	<!-- Topics conteiner -->
-	
-	<!-- end topics conteiner -->
 
 	<div class="form-group">
 		{!! Form::submit('Actualizar', ['class' => 'btn btn-primary pull-right ']) !!}
