@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Category;
+use App\Subject;
+use App\Article;
 
 class HomeController extends Controller
 {
@@ -19,29 +22,35 @@ class HomeController extends Controller
     public function index()
     {
         //TODO corregir auth (pasar al construct)            
-        if (isset(\Auth::user()->type)) {
-            $this->user_type = \Auth::user()->type;
-        }
-
-        if ($this->user_type == 'admin') {
+        if (isset(\Auth::user()->id)) {
+            $me = \Auth::user();
         
-            $n_students = User::user_type('student')->count();
-            $n_professors = User::user_type('professor')->count();
-            //$n_articles = Article::orderBy('id', 'ASC')->count();
-
-            return view('admin.index')
-                ->with('n_students', $n_students)
-                ->with('n_professors', $n_professors);
-                //->with('n_articles', $n_articles);
+            if ($me->type == 'admin') {
         
-        } elseif ($this->user_type == 'professor') {
-            
-            return view('professor.index');
+                $n_students = User::user_type('student')->count();
+                $n_professors = User::user_type('professor')->count();
+                $n_articles = Article::orderBy('id', 'ASC')->count();
 
-        } else {
+                return view('admin.index')
+                    ->with('n_students', $n_students)
+                    ->with('n_professors', $n_professors)
+                    ->with('n_articles', $n_articles);
             
-            return view('home');
+            } elseif ($me->type == 'professor') {
+                
+                $articles = Article::orderBy('id', 'DESC')->paginate(10);
 
+                return view('professor.index')->with('articles', $articles); 
+
+            } else {
+                
+                $categories = Category::orderBy('id', 'ASC')->paginate(10);
+                $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
+
+                return view('student.index')
+                    ->with('categories', $categories)
+                    ->with('subjects', $subjects);
+            }
         }
     }
 }

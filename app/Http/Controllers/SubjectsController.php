@@ -62,7 +62,12 @@ class SubjectsController extends Controller
 
     public function show($id)
     {
+        //TODO corregir auth (pasar al construct)
+        $me = Auth::user();
 
+        $subject = Subject::find($id);
+        
+        return view('common.subjects.show')->with('subject', $subject);
     }
 
     public function edit($id)

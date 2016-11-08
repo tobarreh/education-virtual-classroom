@@ -12,6 +12,16 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <style type="text/css">
+        /* Background image */
+        .background {
+            background-image: url("/images/home/students.jpg");
+        }
+
+        .center {
+            margin-top: 15%;
+        }
+    </style>
 
     <!-- Scripts -->
     <script>
@@ -20,10 +30,10 @@
         ]); ?>
     </script>
 </head>
-<body>
+<body class="background">
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+        <nav class="navbar navbar-static-top">
+            <div class="col-md-12">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
