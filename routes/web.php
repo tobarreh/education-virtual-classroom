@@ -10,7 +10,6 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
 Route::auth();
 
 Route::get('/', function () {
@@ -55,7 +54,20 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function(){
 			'as' 	=> 'articles.destroy'
 		]);
 
-		Route::resource('tags','TagsController');
+	//Questions
+	Route::post('{id}/questions/store', [
+		'uses' 	=> 'ArticleQuestionsController@store',
+		'as' 	=> 'questions.store'
+	]);
+
+	//Votes
+	Route::get('{id}/questions/vote', [
+		'uses' 	=> 'ArticleQuestionsController@vote',
+		'as' 	=> 'questions.vote'
+	]);
+
+
+	Route::resource('tags','TagsController');
 		Route::get('tags/{id}/destroy', [
 			'uses' 	=> 'TagsController@destroy',
 			'as' 	=> 'tags.destroy'

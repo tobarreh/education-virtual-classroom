@@ -25,7 +25,7 @@ class SubjectsController extends Controller
     	$subjects = Subject::search($request->name)->orderBy('name', 'ASC')->paginate(10);
 
         $subjects->each(function($subject){
-            //$subject->n_articles = Subject::articles_by_subject($subject->id)->count();
+            $subject->n_articles = Subject::articles_by_subject($subject->id)->count();
         });
 
         return view("$me->type" . '.subjects.index')->with('subjects', $subjects);    

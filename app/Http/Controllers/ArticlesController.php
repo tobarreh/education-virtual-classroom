@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Article;
 use App\Subject;
 use App\Topic;
+use App\Article;
+use App\ArticleQuestion;
 use App\Tag;
 
 class ArticlesController extends Controller
@@ -69,8 +70,12 @@ class ArticlesController extends Controller
         
         $article->seen = ++$article->seen;
         $article->save();
-        
-        return view('common.articles.show')->with('article', $article);
+
+        $questions = ArticleQuestion::orderBy('created_at', 'DES')->paginate(10);
+
+        return view('common.articles.show')
+            ->with('article', $article)
+            ->with('questions', $questions);
     }
 
     public function edit($id)

@@ -1,4 +1,5 @@
 /* Profile */
+
 .user-info {
   background-image: url("/images/profile/liquor2.jpg");
 
@@ -82,6 +83,10 @@
   font-size: 16px;
 }
 
+.textarea-limited {
+  resize: vertical;
+}
+
 /* Social links */
 
 .social-media-item {
@@ -108,4 +113,25 @@
 
 .social-media-icon:hover {
   opacity: 1.0;
+}
+
+/* Discussion */
+
+.discussion-info {
+  font-size: 15px !important;
+  line-height: 9px !important;
+}
+
+.discussion-votes {
+  float: left;
+  padding-right: 15px;
+}
+
+.votes-sum {
+  padding-right: 15px;
+}
+
+.discussion-meta-info {
+  float: right;
+  text-align: right;
 }

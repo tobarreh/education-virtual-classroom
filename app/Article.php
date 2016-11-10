@@ -24,6 +24,11 @@ class Article extends Model
         return $this->belongsToMany('App\Tag');
     }
 
+    public function aticleQuestions()
+    {
+        return $this->hasMany('App\ArticleQuestion');
+    }
+
     public function scopeSearch($query, $title, $id)
     {
         return $query

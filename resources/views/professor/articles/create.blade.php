@@ -20,7 +20,7 @@
 				{!! Form::label('subject_id', 'Materia') !!}
 			</div>
 			<div class="col-md-2 col-md-offset-2">
-				{!! Form::select('subject_id', $subjects, null, ['class' => 'form-control select-subject', null, 'required']) !!}
+				{!! Form::select('subject_id', $subjects, null, ['id' => 'subject', 'class' => 'form-control selector', null, 'required']) !!}
 			</div>
 		</div>
 
@@ -29,7 +29,7 @@
 				{!! Form::label('topic_id', 'Tema') !!}
 			</div>
 			<div class="col-md-2 col-md-offset-2">
-				{!! Form::select('topic_id', $topics, null, ['class' => 'form-control select-topic', null, 'required']) !!}
+				{!! Form::select('topic_id', $topics, null, ['id' => 'topic', 'class' => 'form-control selector', null, 'required']) !!}
 			</div>
 		</div>
 
@@ -61,15 +61,22 @@
 
 @section('js')
 <script>
-	$(".select-subject").chosen({
+	$(".selector").chosen({
 	 	no_results_text: "No hay opciones disponibles!",
 	 	disable_search: true
  	});
 
-	$(".select-topic").chosen({
-	 	no_results_text: "No hay opciones disponibles!",
-	 	disable_search: true
- 	});
+	/*$('#subject').on('change',function(e){
+		console.log(e);
+
+		var subject_id = e.target.value;
+
+		//ajax
+		$.get('/topics?subject_id' + subject_id, function(data){
+			//success data
+			console.log(data);
+		})
+	});*/
 	
 	$('.textarea-content').trumbowyg({
 

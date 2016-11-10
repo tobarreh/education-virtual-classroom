@@ -19,7 +19,7 @@
                 <h4 class="modal-title" id="myModalLabel">Mejoras a realizar</h4>
               </div>
               <div class="modal-body">
-                
+                <h4>En este momento estamos agregando preguntas y comentarios para cada articulo</h4>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -44,7 +44,7 @@
 
             <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <h2 class="text-center"><span class="glyphicon glyphicon-file"></span></h2>
+                <h2 class="text-center"><span class="glyphicon glyphicon-file"> {{ $n_articles }}</span></h2>
             </div>
         </div>  
     </div>

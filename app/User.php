@@ -23,6 +23,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Article');
     }
 
+    public function aticleQuestions()
+    {
+        return $this->hasMany('App\ArticleQuestion');
+    }
+
     public function scopeSearch($query, $name)
     {
         return $query
