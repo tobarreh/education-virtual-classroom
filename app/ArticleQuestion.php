@@ -18,4 +18,10 @@ class ArticleQuestion extends Model
     {
     	return $this->belongsTo('App\User');
     }
+
+    public function scopeQuestions_by_article($query, $id)
+    {
+        return $query
+            ->where('article_id', $id);
+    }
 }

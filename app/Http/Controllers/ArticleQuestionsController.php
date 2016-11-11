@@ -11,6 +11,8 @@ class ArticleQuestionsController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
+        
         Carbon::setLocale('es');
     }
 
@@ -37,16 +39,6 @@ class ArticleQuestionsController extends Controller
 
         flash('Tu pregunta ha sido realizada correctamente', 'info')  ;
         return redirect()->route('articles.show', $id);
-    }
-
-    public function vote(Request $request, $id)
-    {
-        $question = ArticleQuestion::find($id);
-
-        $question->votes = ++$question->votes;
-        $question->save();
-
-        return redirect()->route('articles.show', $question->article_id);
     }
 
     public function show($id)

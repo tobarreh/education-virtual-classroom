@@ -65,15 +65,17 @@ class ArticlesController extends Controller
 
     public function show($id)
     {
+        $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
         $article = Article::find($id);
         $article->tags()->sync($article->tags);
         
         $article->seen = ++$article->seen;
         $article->save();
 
-        $questions = ArticleQuestion::orderBy('created_at', 'DES')->paginate(10);
+        $questions = ArticleQuestion::questions_by_article($id)->orderBy('created_at', 'DES')->paginate(10);
 
         return view('common.articles.show')
+            ->with('subjects', $subjects)
             ->with('article', $article)
             ->with('questions', $questions);
     }

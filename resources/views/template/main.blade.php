@@ -2,7 +2,7 @@
 <html land="es">
 <head>
 	<main charset="UTF=8">
-	<title>{{ Auth::user()->type }} | @yield('title', '')</title>
+	<title>| @yield('title', '')</title>
 	
 	<link rel="stylesheet" href="{{ asset('css/general.css')}}">
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css')}}">
@@ -11,8 +11,10 @@
 </head>
 
 <body>
-	<!-- profile -->		
-	@include('template.partials.profile')
+	@if (!(Auth::guest()))
+		<!-- profile -->	
+		@include('template.partials.profile')
+	@endif
 
 	<!-- nav -->
 	@include('template.partials.nav')

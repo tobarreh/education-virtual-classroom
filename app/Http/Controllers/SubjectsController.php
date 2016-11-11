@@ -65,9 +65,12 @@ class SubjectsController extends Controller
         //TODO corregir auth (pasar al construct)
         $me = Auth::user();
 
+        $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
         $subject = Subject::find($id);
         
-        return view('common.subjects.show')->with('subject', $subject);
+        return view('common.subjects.show')
+            ->with('subjects', $subjects)
+            ->with('subject', $subject);
     }
 
     public function edit($id)

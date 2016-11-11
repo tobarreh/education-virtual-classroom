@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 use App\Category;
@@ -16,8 +15,6 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
-
         Carbon::setLocale('es');
     }
 
@@ -44,7 +41,7 @@ class HomeController extends Controller
 
                 return view('professor.index')->with('articles', $articles); 
 
-            } else {
+            } elseif ($me->type == 'student') {
                 
                 $categories = Category::orderBy('id', 'ASC')->paginate(10);
                 $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
@@ -53,6 +50,14 @@ class HomeController extends Controller
                     ->with('categories', $categories)
                     ->with('subjects', $subjects);
             }
+        } else {
+
+            $categories = Category::orderBy('id', 'ASC')->paginate(10);
+            $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
+
+            return view('student.index')
+                ->with('categories', $categories)
+                ->with('subjects', $subjects);
         }
     }
 }

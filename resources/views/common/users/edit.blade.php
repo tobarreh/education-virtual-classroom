@@ -20,25 +20,7 @@
 					</div>
 				</div>
 			@endif
-			
-				<div class="form-group row">
-					<div class="col-md-12">	
-						@if ($me->id == $user->id)
-							<div class="col-md-6">
-								{!! Form::label('birth_date', 'Fecha de nacimiento') !!}
-							</div>
-
-							<div class="col-md-2 col-md-offset-2">
-								{!! Form::date('birth_date', $user->birth_date, ['id' => 'birth_date', 'class' => 'form-control', 'placeholder' => 'dd-mm-YYYY']) !!}	
-							</div>
-						@else
-							<div class="col-md-12">
-								<p><span class="glyphicon glyphicon-gift"> {{ $user->birth_date }} </span></p>
-							</div>
-						@endif
-					</div>
-				</div>
-
+				
 				<div class="form-group row">
 					<div class="col-md-12">
 						@if ($me->id == $user->id)	
@@ -52,6 +34,24 @@
 						@else
 							<div class="col-md-12">
 								<h4>{{ $user->name }}</h4>
+							</div>
+						@endif
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<div class="col-md-12">	
+						@if ($me->id == $user->id)
+							<div class="col-md-6">
+								{!! Form::label('birth_date', 'Fecha de nacimiento') !!}
+							</div>
+
+							<div class="col-md-2 col-md-offset-2">
+								{!! Form::date('birth_date', $user->birth_date, ['id' => 'birth_date', 'class' => 'form-control', 'placeholder' => 'yyyy-mm-dd']) !!}	
+							</div>
+						@else
+							<div class="col-md-12">
+								<p><span class="glyphicon glyphicon-gift"> {{ $user->birth_date }} </span></p>
 							</div>
 						@endif
 					</div>
@@ -119,7 +119,7 @@
 
 						<div class="col-md-12"> 
 							@if ($me->id == $user->id)
-								{!! Form::textarea('about_me', $user->about_me, ['class' => 'form-control textarea-limited', , 'placeholder' => 'Escribe algo sobre ti...']) !!}
+								{!! Form::textarea('about_me', $user->about_me, ['class' => 'form-control textarea-limited', 'placeholder' => 'Escribe algo sobre ti...']) !!}
 							@else
 								<div class="col-md-12">
 									@if (empty($user->about_me))

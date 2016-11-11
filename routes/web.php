@@ -12,16 +12,18 @@
 */
 Route::auth();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+	'uses' 	=> 'HomeController@index',
+	'as' 	=> 'home.index'
+]);
 
-Route::group(['prefix' => '/', 'middleware' => 'auth'], function(){
+Route::get('/home', [
+	'uses' 	=> 'HomeController@index',
+	'as' 	=> 'home.index'
+]);
 
-	Route::get('home', [
-		'uses' 	=> 'HomeController@index',
-		'as' 	=> 'home.index'
-	]);
+//Route::group(['prefix' => '/', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => '/'], function(){
 
 	Route::resource('users','UsersController');
 		Route::get('users/{id}/destroy', [
@@ -55,15 +57,9 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function(){
 		]);
 
 	//Questions
-	Route::post('{id}/questions/store', [
+	Route::get('{id}/questions/store', [
 		'uses' 	=> 'ArticleQuestionsController@store',
 		'as' 	=> 'questions.store'
-	]);
-
-	//Votes
-	Route::get('{id}/questions/vote', [
-		'uses' 	=> 'ArticleQuestionsController@vote',
-		'as' 	=> 'questions.vote'
 	]);
 
 

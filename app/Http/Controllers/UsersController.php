@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Subject;
 
 class UsersController extends Controller
 {
     public function __construct()
     {
-        
+        $this->middleware('auth');        
     }
 
     //TODO (validacion de campos)
@@ -39,9 +40,12 @@ class UsersController extends Controller
         //TODO corregir auth (pasar al construct)
         $me = Auth::user();
 
+        $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
+
         $user = User::find($id);
         
         return view('common.users.show')
+            ->with('subjects', $subjects)
             ->with('me', $me)
             ->with('user', $user);
     }

@@ -9,11 +9,11 @@
 </div>
 
 <div class="col-md-10">
-	@foreach ($article->tags as $tag)
-		<span class="glyphicon glyphicon-tags" data-toggle="tooltip" data-placement="left" title="Tags">
+	<span class="glyphicon glyphicon-tags" data-toggle="tooltip" data-placement="left" title="Tags">
+		@foreach ($article->tags as $tag)
 			<span class="label label-default">{{ $tag->name }}</span>
-		</span> 
-	@endforeach
+		@endforeach
+	</span> 
 </div>
 
 <div class="col-md-2">
@@ -43,23 +43,26 @@
 		    <div role="tabpanel" class="tab-pane active" id="questions">
 		    	<div class="form-group row col-md-8">
 					<div class="form-group row">
-						{!! Form::open(['route' => ['questions.store', $article->id], 'method' => 'POST']) !!}﻿
+						{!! Form::open(['route' => ['questions.store', $article->id], 'method' => 'GET']) !!}﻿
 
 							<div class="col-md-12">
 								{!! Form::textarea('content', null, ['class' => 'form-control textarea-limited', 'placeholder' => 'Realiza aqui tu pregunta!', 'required']) !!}
 
-								{!! Form::submit('Pregunta!', ['class' => 'btn btn-default pull-right ']) !!}
+								{!! Form::submit('Pregunta', ['class' => 'btn btn-primary pull-right ']) !!}
 							</div>
 
 						{!! Form::close() !!}
 					</div>
+					<hr>
 
 			 		@foreach ($questions as $question)
-			    		<p>{!! $question->content !!}</p>
+			    		<div class="discussion-content">
+			    			<p>{!! $question->content !!}</p>
+			    		</div>
 				    	<div class="discussion-info row">
 		    			 	<div class="discussion-votes">
 				    			<span class="votes-sum"><b>{!! $question->votes !!} votos </b></span>
-		    			 		<a href="{{ route('questions.vote', $question->id) }}">
+		    			 		<a href="">
 		    			 			<span class="question-vote glyphicon glyphicon-triangle-top"></span>
 		    			 		</a>
 		    			 		<a href="">

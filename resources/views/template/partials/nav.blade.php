@@ -13,19 +13,25 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    @if (Auth::user()->type == 'admin')
-                        <li><a href="{{ route('home.index') }}">Inicio</a></li>
-                        <li><a href="{{ route('users.index') }}">Usuarios</a></li>
-                        <li><a href="{{ route('categories.index') }}">Categorias</a></li>
-                        <li><a href="{{ route('subjects.index') }}">Materias</a></li>
-                        <li><a href="{{ route('topics.index') }}">Temas</a></li>
-                        <li><a href="{{ route('articles.index') }}">Articulos</a></li>
-                        <li><a href="{{ route('tags.index') }}">Tags</a></li>
-                    @elseif (Auth::user()->type == 'professor')
-                        <li><a href="{{ route('home.index') }}">Inicio</a></li>
-                        <li><a href="{{ route('articles.index') }}">Mis articulos</a></li>
-                    @elseif (Auth::user()->type == 'student')
-                        <li><a href="{{ route('home.index') }}">Inicio</a></li>
+                    @if (!(Auth::guest()))
+                        @if (Auth::user()->type == 'admin')
+                            <li><a href="{{ route('home.index') }}">Inicio</a></li>
+                            <li><a href="{{ route('users.index') }}">Usuarios</a></li>
+                            <li><a href="{{ route('categories.index') }}">Categorias</a></li>
+                            <li><a href="{{ route('subjects.index') }}">Materias</a></li>
+                            <li><a href="{{ route('topics.index') }}">Temas</a></li>
+                            <li><a href="{{ route('articles.index') }}">Articulos</a></li>
+                            <li><a href="{{ route('tags.index') }}">Tags</a></li>
+                        @elseif (Auth::user()->type == 'professor')
+                            <li><a href="{{ route('home.index') }}">Inicio</a></li>
+                            <li><a href="{{ route('articles.index') }}">Mis articulos</a></li>
+                        @elseif (Auth::user()->type == 'student')
+                            <!-- Dropdown -->
+                            @include ('template.partials.nav-topics')
+                        @endif
+                    @else 
+                        <!-- Dropdown -->
+                        @include ('template.partials.nav-topics')
                     @endif
                 </ul>
 
@@ -33,8 +39,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}">Ingresar</a></li>
+                        <li><a href="{{ url('/register') }}">Registrarme</a></li>
                     @else
                         <li>
                             <!-- Search -->
