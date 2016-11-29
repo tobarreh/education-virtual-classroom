@@ -16,7 +16,7 @@ class CreateTopicsTable extends Migration
 
             $table->timestamps();
         });
-
+        
         Schema::table('topics', function (Blueprint $table) {            
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
@@ -25,5 +25,6 @@ class CreateTopicsTable extends Migration
     public function down()
     {
         Schema::drop('topics');
+        Schema::disableForeignKeyConstraints();
     }
 }

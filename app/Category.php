@@ -9,9 +9,9 @@ class Category extends Model
     protected $table = "categories";
     protected $fillable = ['name'];
 
-    public function subjects()
+    public function matters()
     {
-        return $this->hasMany('App\Subject');
+        return $this->hasMany('App\Matter');
     }
 
     public function scopeSearch($query, $name)

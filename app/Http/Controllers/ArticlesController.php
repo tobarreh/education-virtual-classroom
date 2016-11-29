@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Subject;
+use App\Grade;
+use App\Matter;
 use App\Topic;
 use App\Article;
-use App\ArticleQuestion;
+use App\Tool;
 use App\Tag;
+use App\ArticleQuestion;
+use App\ArticleQuestionAnswer;
+use App\ArticleComment;
+use App\ArticleCommentAnswer;
 
 class ArticlesController extends Controller
 {
@@ -38,12 +43,12 @@ class ArticlesController extends Controller
         //TODO corregir auth (pasar al construct)
         $me = Auth::user();
 
-        $subjects = Subject::orderBy('name', 'ASC')->pluck('name', 'id');
+        $matters = Matter::orderBy('name', 'ASC')->pluck('name', 'id');
         $topics = Topic::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
 
         return view("$me->type" . '.articles.create')
-            ->with('subjects', $subjects)
+            ->with('matters', $matters)
             ->with('topics', $topics)
             ->with('tags', $tags);
     }
@@ -54,10 +59,13 @@ class ArticlesController extends Controller
         $me = Auth::user();
 
         $article = new Article($request->all());
-        
         $article->user_id = $me->id;
-        $article->save();  
+        $article->save();
         $article->tags()->sync($request->tags);
+
+        $tool = new Tool($request->all());
+        $tool->article_id = $article->id;
+        $tool->save();
 
         flash('Se ha creado el articulo ' . $article->title . ' correctamente', 'info')  ;
         return redirect()->route('articles.index');
@@ -65,19 +73,33 @@ class ArticlesController extends Controller
 
     public function show($id)
     {
-        $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
+        //TODO corregir auth (pasar al construct)
+        $me = Auth::user();
+
+        $grades = Grade::orderBy('name', 'ASC')->paginate(10);
+        $matters = Matter::orderBy('name', 'ASC')->paginate(10);
+        
         $article = Article::find($id);
         $article->tags()->sync($article->tags);
         
         $article->seen = ++$article->seen;
         $article->save();
 
-        $questions = ArticleQuestion::questions_by_article($id)->orderBy('created_at', 'DES')->paginate(10);
+        $questions = ArticleQuestion::questions_by_article($id);
+        $question_answers = ArticleQuestionAnswer::answers_by_article($id);
+ 
+        $comments = ArticleComment::comments_by_article($id);
+        $comment_answers = ArticleCommentAnswer::answers_by_article($id);
 
         return view('common.articles.show')
-            ->with('subjects', $subjects)
+            ->with('me', $me)
+            ->with('grades', $grades)
+            ->with('matters', $matters)
             ->with('article', $article)
-            ->with('questions', $questions);
+            ->with('questions', $questions)
+            ->with('question_answers', $question_answers)
+            ->with('comments', $comments)
+            ->with('comment_answers', $comment_answers);
     }
 
     public function edit($id)
@@ -87,14 +109,14 @@ class ArticlesController extends Controller
 
         $article = Article::find($id);
 
-        $subjects = Subject::orderBy('name', 'ASC')->pluck('name', 'id');
+        $matters = Matter::orderBy('name', 'ASC')->pluck('name', 'id');
         $topics = Topic::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
         $article_tags = $article->tags->pluck('id')->toArray();
 
         return view("$me->type" . '.articles.edit')
             ->with('article', $article)
-            ->with('subjects', $subjects)
+            ->with('matters', $matters)
             ->with('topics', $topics)
             ->with('tags', $tags)
             ->with('article_tags', $article_tags);
@@ -105,6 +127,8 @@ class ArticlesController extends Controller
         $article = Article::find($id);
         $article->fill($request->all());
         $article->save();
+
+        //$article->tags()->sync($article->tags);
 
         Flash('El articulo ' . $article->title . ' ha sido actualizado correctamente', 'info');
         return redirect()->route('articles.index');

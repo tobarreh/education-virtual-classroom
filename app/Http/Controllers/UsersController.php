@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-use App\Subject;
+use App\Grade;
+use App\Matter;
 
 class UsersController extends Controller
 {
@@ -40,12 +41,14 @@ class UsersController extends Controller
         //TODO corregir auth (pasar al construct)
         $me = Auth::user();
 
-        $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
+        $grades = Grade::orderBy('name', 'ASC')->paginate(10);
+        $matters = Matter::orderBy('name', 'ASC')->paginate(10);
 
         $user = User::find($id);
         
         return view('common.users.show')
-            ->with('subjects', $subjects)
+            ->with('grades', $grades)
+            ->with('matters', $matters)
             ->with('me', $me)
             ->with('user', $user);
     }

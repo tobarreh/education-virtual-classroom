@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Grade;
+use App\Matter;
 use App\Subject;
 use App\Topic;
 
@@ -21,6 +23,10 @@ class TopicsController extends Controller
         $me = Auth::user();
 
         $topics = Topic::search($request->name)->orderBy('name', 'ASC')->paginate(10);    
+
+        foreach ($topics as $topic) {
+           $topic->n_articles = count($topic->articles);
+        }
         
         return view("$me->type" . '.topics.index')->with('topics', $topics);
     }
@@ -32,7 +38,7 @@ class TopicsController extends Controller
 
         $subjects = Subject::orderBy('name', 'ASC')->pluck('name', 'id');
 
-        return view("$me->type" . '.topics.create')->with('subjects', $subjects);  
+        return view("$me->type" . '.topics.create')->with('subjects', $subjects);
     }
 
     public function store(Request $request)
@@ -40,9 +46,7 @@ class TopicsController extends Controller
 	 	$topic = new Topic($request->all());
         $topic->save();
 
-        $subject = Subject::find($topic->subject_id);
-
-        flash('Se ha registrado la categoria ' . $topic->name . ' correctamente!', 'info');
+        flash('Se ha registrado el tema ' . $topic->name . ' correctamente!', 'info');
         return redirect()->route('topics.index');
     }
 
@@ -57,11 +61,11 @@ class TopicsController extends Controller
         $me = Auth::user();
 
 	 	$topic = Topic::find($id);
-        $subjects = Subject::orderBy('name', 'ASC')->pluck('name', 'id');
+        $matters = Matter::orderBy('name', 'ASC')->pluck('name', 'id');
 
         return view("$me->type" . '.topics.edit')
             ->with('topic', $topic)
-            ->with('subjects', $subjects);
+            ->with('matters', $matters);
     }
 
     public function update(Request $request, $id)

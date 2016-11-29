@@ -12,8 +12,6 @@ class ArticleQuestionsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        
-        Carbon::setLocale('es');
     }
 
     public function index()
@@ -58,6 +56,31 @@ class ArticleQuestionsController extends Controller
 
     public function destroy($id)
     {
-        //
+        $question = ArticleQuestion::find($id);
+        $article_id = $question->article_id;
+
+        $question->delete();
+
+        Flash('Tu pregunta ha sido eliminada correctamente', 'info');
+        return redirect()->route('articles.show', $article_id);        
+    }
+
+    public function vote($id, $vote)
+    {
+        $question = ArticleQuestion::find($id);
+
+        if ($vote == 0) {
+
+            $question->votes = --$question->votes;
+        
+        } else {
+           
+            $question->votes = ++$question->votes;
+        }          
+        
+        $question->save();
+
+        Flash('Tu voto ha sido realizado correctamente', 'info');
+        return redirect()->route('articles.show', $question->article_id);
     }
 }

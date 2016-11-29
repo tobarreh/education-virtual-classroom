@@ -3,8 +3,8 @@
 @section('content')
 <div class=" col-md-12">
 	<div class="panel panel-body ">
-		<h2 class="text-center">{{ $subject->name }}</h2>
-		@foreach ($subject->topics as $topic)
+		<h2 class="text-center">{{ $matter->name }}</h2>
+		@foreach ($topics as $topic)
 				<hr>
 
 				<ul>

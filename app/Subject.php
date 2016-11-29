@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     protected $table = "subjects";
-    protected $fillable = ['name', 'category_id', 'image'];
+    protected $fillable = ['name', 'grade_id', 'matter_id'];
 
-    public function category()
+    public function grade()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Grade');
+    }
+
+    public function matter()
+    {
+        return $this->belongsTo('App\Matter');
     }
 
     public function topics()
@@ -22,13 +27,5 @@ class Subject extends Model
     public function scopeSearch($query, $name)
     {
     	return $query->where('name', 'like', "%$name%");
-    }
-
-    public function scopeArticles_by_subject($query, $id)
-    {
-        return $query
-            ->join('topics', 'subjects.id', '=', 'topics.subject_id')
-            ->join('articles', 'topics.id', '=', 'articles.topic_id')
-            ->where('subjects.id', $id);
     }
 }

@@ -11,15 +11,15 @@
 </head>
 
 <body>
-	@if (!(Auth::guest()))
-		<!-- profile -->	
-		@include('template.partials.profile')
+	<!-- profile -->
+	@if (Auth::check())
+		@include ('template.partials.profile')
 	@endif
 
 	<!-- nav -->
-	@include('template.partials.nav')
+	@include ('template.partials.nav')
 
-	<!-- container -->		
+	<!-- container -->
 	<section class="container">
 		<!-- error notifications -->				
 		@if (session()->has('flash_notification.message'))
@@ -33,11 +33,9 @@
 			</div>
 		@endif
 
-		@include('template.partials.errors')
+		@include ('template.partials.errors')
 
-		<div class="row">
-			<h4>@yield('title', '')</h4>
-		</div>
+		<h4>@yield('title', '')</h4>
 
 		@yield('content')
 	</section>

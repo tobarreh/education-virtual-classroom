@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\User;
+use App\Grade;
 use App\Category;
-use App\Subject;
+use App\Matter;
 use App\Article;
 
 class HomeController extends Controller
@@ -43,21 +44,25 @@ class HomeController extends Controller
 
             } elseif ($me->type == 'student') {
                 
+                $grades = Grade::orderBy('name', 'ASC')->paginate(10);
                 $categories = Category::orderBy('id', 'ASC')->paginate(10);
-                $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
+                $matters = Matter::orderBy('name', 'ASC')->paginate(10);
 
-                return view('student.index')
+                return view('common.index')
+                    ->with('grades', $grades)
                     ->with('categories', $categories)
-                    ->with('subjects', $subjects);
+                    ->with('matters', $matters);
             }
         } else {
 
             $categories = Category::orderBy('id', 'ASC')->paginate(10);
-            $subjects = Subject::orderBy('name', 'ASC')->paginate(10);
+            $grades = Grade::orderBy('name', 'ASC')->paginate(10);   
+            $matters = Matter::orderBy('name', 'ASC')->paginate(10);
 
-            return view('student.index')
+            return view('common.index')
+                ->with('grades', $grades)
                 ->with('categories', $categories)
-                ->with('subjects', $subjects);
+                ->with('matters', $matters);
         }
     }
 }

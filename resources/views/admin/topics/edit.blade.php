@@ -8,10 +8,10 @@
 
 	<div class="form-group row">
     	<div class="col-md-3">
-			{!! Form::label('subject_id', 'Materia') !!}
+			{!! Form::label('subject_id', 'Asignatura') !!}
     	</div>
 		<div class="col-md-2 col-md-offset-2">
-			{!! Form::select('subject_id', $subjects, $topic->subject_id, ['class' => 'form-control select-subject', null, 'required']) !!}
+			{!! Form::select('subject_id', $matters, $topic->subject_id, ['class' => 'form-control select-subject', null, 'required']) !!}
 		</div>
 	</div>
 

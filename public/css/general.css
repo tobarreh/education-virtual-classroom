@@ -1,3 +1,11 @@
+/* Errors */
+
+.btn-report {
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /* Profile */
 
 .user-info {
@@ -115,23 +123,76 @@
   opacity: 1.0;
 }
 
+/* Home */
+
+.title-matter {
+  font-size: 18px !important;
+  color: #808080;
+  text-decoration: none;
+}
+
+/* Article */
+
+.article-title {
+  text-align: center;
+}
+
+.article-content {
+  font-size: 16px !important;
+  margin-left: 10px; 
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.article-tool {
+  text-align: center;
+}
+
 /* Discussion */
 
-.discussion-info {
-  font-size: 15px !important;
-  line-height: 9px !important;
+.discussion {
+  padding-top: 10px;
 }
+
+.discussion-content {
+  float: left;
+  padding-bottom: 10px;
+  font-size: 18px !important;
+}
+
+.discussion-delete {
+  float: right;
+}
+
 
 .discussion-votes {
   float: left;
-  padding-right: 15px;
+  margin-right: 15px;
 }
 
 .votes-sum {
-  padding-right: 15px;
+  margin-right: 15px;
+}
+
+.discussion-reply-button {
+  margin-left: 15px;
+}
+
+.discussion-answers-button {
+  margin-left: 30px;
 }
 
 .discussion-meta-info {
   float: right;
   text-align: right;
+}
+
+.discussion-reply {
+  margin-left: 60px;
+}
+
+.answer-content {
+  float: left;
+  padding-bottom: 10px;
+  font-size: 15px !important;
 }

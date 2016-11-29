@@ -3,7 +3,10 @@
 @section('content')
 <br />
 
-<div class="col-md-12">    
+<!-- report errors -->
+@include ('template.partials.errors-report')
+
+<div class="col-md-12">
     <div class="jumbotron">    
         <h1>Estamos trabajando en esto!</h1>
         <p>estamos realizando ajustes en la pagina principal de administradores</p>

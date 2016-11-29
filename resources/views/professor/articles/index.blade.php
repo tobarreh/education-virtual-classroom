@@ -22,9 +22,7 @@
 					<td>
 						<a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a>
 					</td>
-					<td>
-						<a href="{{ route('subjects.show', $article->topic->subject->id) }}">{{ $article->topic->subject->name }}</a>
-					</td>
+					<td>{{ $article->topic->subject->name }}</td>
 					<td>{{ $article->user->name}}</td>
 					<td>{{ $article->created_at->toDateString() }}</td>
 					<td>

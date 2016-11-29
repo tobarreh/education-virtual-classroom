@@ -1,33 +1,25 @@
 @extends('template.main')
 
-@section('title', 'Nueva Materia')
+@section('title', 'Nueva Asignatura')
 
 @section('content')
 <div class="panel panel-body col-md-12">
 	{!! Form::open(['route' => 'subjects.store', 'method' => 'POST', 'files' => true]) !!}
 
-    <div class="form-group row">
-    	<div class="col-md-3">
-			{!! Form::label('name', 'Nombre') !!}
-    	</div>
-		<div class="col-md-4">
-			{!! Form::text('name', null, ['class' => 'form-control', 'required', 'placeholder' => 'Nombre de la materia']) !!}
-		</div>
-	</div>
 	<div class="form-group row">
     	<div class="col-md-3">
-			{!! Form::label('category_id', 'Categoria') !!}
+			{!! Form::label('matter_id', 'Materia') !!}
     	</div>
 		<div class="col-md-2 col-md-offset-2">
-			{!! Form::select('category_id', $categories, null, ['class' => 'form-control select-category', 'required']) !!}
+			{!! Form::select('matter_id', $matters, null, ['class' => 'form-control select-matter', 'required']) !!}
 		</div>
 	</div>
 	<div class="form-group row">
     	<div class="col-md-3">
-			{!! Form::label('image', 'Imagen') !!}
+			{!! Form::label('grade_id', 'Grado') !!}
     	</div>
-		<div class="col-md-4">
-			{!! Form::file('image') !!}
+		<div class="col-md-2 col-md-offset-2">
+			{!! Form::select('grade_id', $grades, null, ['class' => 'form-control select-grade', 'required']) !!}
 		</div>
 	</div>
 
@@ -41,7 +33,12 @@
 
 @section('js')
 <script>
-	$(".select-category").chosen({
+	$(".select-grade").chosen({
+	 	no_results_text: "No hay opciones disponibles!",
+	 	disable_search: true
+ 	});
+
+	$(".select-matter").chosen({
 	 	no_results_text: "No hay opciones disponibles!",
 	 	disable_search: true
  	});

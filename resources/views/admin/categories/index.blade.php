@@ -19,7 +19,7 @@
 				<tr class="text-center">
 					<td><b>{{ $category->id }}</b></td>
 					<td>{{ $category->name }}</td>
-					<td>{{ $category->n_subjects }}</td>
+					<td>{{ $category->n_matters }}</td>
 					<td>{{ $category->created_at->toDateString() }}</td>
 					<td>
 						<a href="{{ route('categories.edit', $category->id) }}" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </a>

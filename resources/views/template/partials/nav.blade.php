@@ -13,24 +13,28 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    @if (!(Auth::guest()))
+                    <li>
+                        <a href="{{ route('home.index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+                    </li>
+                    
+                    @if ((Auth::check()))
                         @if (Auth::user()->type == 'admin')
-                            <li><a href="{{ route('home.index') }}">Inicio</a></li>
                             <li><a href="{{ route('users.index') }}">Usuarios</a></li>
                             <li><a href="{{ route('categories.index') }}">Categorias</a></li>
-                            <li><a href="{{ route('subjects.index') }}">Materias</a></li>
+                            <li><a href="{{ route('matters.index') }}">Materias</a></li>
+                            <li><a href="{{ route('grades.index') }}">Grados</a></li>
+                            <li><a href="{{ route('subjects.index') }}">Asignaturas</a></li>
                             <li><a href="{{ route('topics.index') }}">Temas</a></li>
                             <li><a href="{{ route('articles.index') }}">Articulos</a></li>
                             <li><a href="{{ route('tags.index') }}">Tags</a></li>
                         @elseif (Auth::user()->type == 'professor')
-                            <li><a href="{{ route('home.index') }}">Inicio</a></li>
                             <li><a href="{{ route('articles.index') }}">Mis articulos</a></li>
                         @elseif (Auth::user()->type == 'student')
-                            <!-- Dropdown -->
+                            <!-- Topics dropdown -->
                             @include ('template.partials.nav-topics')
                         @endif
                     @else 
-                        <!-- Dropdown -->
+                        <!-- Topics dropdown -->
                         @include ('template.partials.nav-topics')
                     @endif
                 </ul>
@@ -44,7 +48,7 @@
                     @else
                         <li>
                             <!-- Search -->
-                            @include('template.partials.search')
+                            @include ('template.partials.search')
                         </li>
                         <li class="dropdown">
                             <!-- Profile -->

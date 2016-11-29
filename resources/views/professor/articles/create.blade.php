@@ -10,17 +10,17 @@
 			<div class="col-md-3">
 				{!! Form::label('title', 'Titulo') !!}
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 col-md-offset-3">
 				{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Titulo del articulo']) !!}
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<div class="col-md-3">
-				{!! Form::label('subject_id', 'Materia') !!}
+				{!! Form::label('matter_id', 'Materia') !!}
 			</div>
-			<div class="col-md-2 col-md-offset-2">
-				{!! Form::select('subject_id', $subjects, null, ['id' => 'subject', 'class' => 'form-control selector', null, 'required']) !!}
+			<div class="col-md-2 col-md-offset-5">
+				{!! Form::select('matter_id', $matters, null, ['id' => 'subject', 'class' => 'form-control selector', null, 'required']) !!}
 			</div>
 		</div>
 
@@ -28,7 +28,7 @@
 			<div class="col-md-3">
 				{!! Form::label('topic_id', 'Tema') !!}
 			</div>
-			<div class="col-md-2 col-md-offset-2">
+			<div class="col-md-2 col-md-offset-5">
 				{!! Form::select('topic_id', $topics, null, ['id' => 'topic', 'class' => 'form-control selector', null, 'required']) !!}
 			</div>
 		</div>
@@ -39,6 +39,15 @@
 			</div>
 			<div class="col-md-10">
 				{!! Form::textarea('content', null, ['class' => 'form-control textarea-content', 'placeholder' => 'Escriba aqui el contenido del articulo']) !!}
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<div class="col-md-1">
+				<img src="{{ asset("images/tools/geogebra.png") }}" alt="image">
+			</div>
+			<div class="col-md-7 col-md-offset-2">
+				{!! Form::text('tool', null, ['class' => 'form-control', 'placeholder' => 'URL']) !!}
 			</div>
 		</div>
 

@@ -1,12 +1,24 @@
 @extends('template.main')
 
-@section('title', $article->title)
-
 @section('content')
-<div class=" col-md-12">
-	<span>{!! $article->content !!}</span>
-	<hr>
+<div class="article-title">
+	<h2>
+		<a data-toggle="collapse" href="#article-content" aria-expanded="true" aria-controls="collapseExample">
+			{!! $article->title !!}
+		</a>
+	</h2>
 </div>
+
+<div class="row">
+	<div id="article-content" class="collapse in article-content">
+		<span>{!! $article->content !!}</span>
+
+		<div class="article-tool">
+			<span>{!! $article->tool !!}</span>
+		</div>
+	</div>
+</div>
+<hr>
 
 <div class="col-md-10">
 	<span class="glyphicon glyphicon-tags" data-toggle="tooltip" data-placement="left" title="Tags">
@@ -40,52 +52,12 @@
 	  	</ul>
 
 	  	<div class="tab-content">
-		    <div role="tabpanel" class="tab-pane active" id="questions">
-		    	<div class="form-group row col-md-8">
-					<div class="form-group row">
-						{!! Form::open(['route' => ['questions.store', $article->id], 'method' => 'GET']) !!}﻿
+			<div role="tabpanel" class="tab-pane active" id="questions">
+		    	@include ('template.partials.articles.questions')
+	    	</div>
 
-							<div class="col-md-12">
-								{!! Form::textarea('content', null, ['class' => 'form-control textarea-limited', 'placeholder' => 'Realiza aqui tu pregunta!', 'required']) !!}
-
-								{!! Form::submit('Pregunta', ['class' => 'btn btn-primary pull-right ']) !!}
-							</div>
-
-						{!! Form::close() !!}
-					</div>
-					<hr>
-
-			 		@foreach ($questions as $question)
-			    		<div class="discussion-content">
-			    			<p>{!! $question->content !!}</p>
-			    		</div>
-				    	<div class="discussion-info row">
-		    			 	<div class="discussion-votes">
-				    			<span class="votes-sum"><b>{!! $question->votes !!} votos </b></span>
-		    			 		<a href="">
-		    			 			<span class="question-vote glyphicon glyphicon-triangle-top"></span>
-		    			 		</a>
-		    			 		<a href="">
-	    				 			<span class="glyphicon glyphicon-triangle-bottom"></span> 
-		    			 		</a>
-		    			 	</div>
-			    			<div class="discussion-meta-info">
-			    				<span>
-			    					por <a href="{{ route('users.show', $question->user_id) }}">
-			    							{!! $question->user->name !!}
-		    							</a> • {!! $question->created_at->diffForHumans() !!}
-		    					</span>
-			    			</div>
-			    		</div>
-			    		<hr>
-		    		@endforeach
-				</div>
-		    </div>
 		    <div role="tabpanel" class="tab-pane" id="comments">
-		    	<div class="form-group row col-md-8">
-			    	<p>Esto es un comentario</p>
-			    	<hr>
-				</div>
+		    	@include ('template.partials.articles.comments')
 		    </div>
 	  	</div>
 	</div>

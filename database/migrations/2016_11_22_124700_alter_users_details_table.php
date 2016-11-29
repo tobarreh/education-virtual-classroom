@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UsersTableDetails extends Migration
+class AlterUsersDetailsTable extends Migration
 {
     public function up()
     {
@@ -23,14 +23,16 @@ class UsersTableDetails extends Migration
 
     public function down()
     {
-        $table->dropColumn('type');
-        $table->dropColumn('birth_date');
-        $table->dropColumn('cell_phone');
-        $table->dropColumn('city');
-        $table->dropColumn('about_me');
-        $table->dropColumn('twitter');
-        $table->dropColumn('facebook');
-        $table->dropColumn('linkedIn');
-        $table->dropColumn('youtube');
+        Schema::table('users', function (Blueprint $table) { 
+            $table->dropColumn('type');
+            $table->dropColumn('birth_date');
+            $table->dropColumn('cell_phone');
+            $table->dropColumn('city');
+            $table->dropColumn('about_me');
+            $table->dropColumn('twitter');
+            $table->dropColumn('facebook');
+            $table->dropColumn('linkedIn');
+            $table->dropColumn('youtube');
+        });
     }
 }

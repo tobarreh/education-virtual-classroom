@@ -20,9 +20,9 @@ class CategoriesController extends Controller
         
         $categories = Category::search($request->name)->orderBy('name', 'ASC')->paginate(10);
         
-        $categories->each(function($category){
-           $category->n_subjects = count($category->subjects);
-        });
+        foreach ($categories as $category) {
+           $category->n_matters = count($category->matters);
+        }
 
         return view("$me->type" . '.categories.index')->with('categories', $categories);        
     }

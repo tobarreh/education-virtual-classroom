@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $table = "articles";
- 	protected $fillable = ['title', 'content', 'topic_id'];
+ 	protected $fillable = ['title', 'tool', 'content', 'topic_id'];
 
     public function user()
     {
@@ -19,6 +19,11 @@ class Article extends Model
     	return $this->belongsTo('App\Topic');
     }
 
+    public function tools()
+    {
+        return $this->hasMany('App\Tool');
+    }    
+
     public function tags()
     {
         return $this->belongsToMany('App\Tag');
@@ -27,6 +32,11 @@ class Article extends Model
     public function aticleQuestions()
     {
         return $this->hasMany('App\ArticleQuestion');
+    }
+
+    public function aticleComments()
+    {
+        return $this->hasMany('App\ArticleComment');
     }
 
     public function scopeSearch($query, $title, $id)

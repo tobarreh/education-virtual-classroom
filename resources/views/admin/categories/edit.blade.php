@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="panel panel-body col-md-12">
-	{!! Form::open(['route' => ['categories.update', $category], 'method' => 'PUT', 'files' => true]) !!}﻿
+	{!! Form::open(['route' => ['categories.update', $category], 'method' => 'PUT']) !!}﻿
 	    <div class="form-group row">
 	    	<div class="col-md-3">
 				{!! Form::label('name', 'Nombre') !!}

@@ -18,7 +18,7 @@
 		      <div class="carousel-caption">
 		        <h3>Biologia</h3>
 		        <p>Descubre todo sobre Biologia</p>
-		        <a href="{{ route('subjects.show', '6') }}">
+		        <a href="{{ route('matters.show', '6') }}">
 		        	<p><b> Leer mas > </b></p>
         		</a>
 		        <br />
@@ -30,7 +30,7 @@
 		      <div class="carousel-caption">
 		        <h3>Historia</h3>
 		        <p>Descubre todo sobre Historia</p>
-		        <a href="{{ route('subjects.show', '7') }}">
+		        <a href="{{ route('matters.show', '7') }}">
 		        	<p><b> Leer mas > </b></p>
 	        	</a>
 		        <br />
@@ -61,26 +61,24 @@
 	<br />
 	<!-- End carousel -->
 
-	<!-- Subjects -->
+	<!-- Matters -->
 	@foreach ($categories as $category)
 		<div  class="col-md-12">
-			<div class="row">
 				<h4>{!! $category->name !!}</h4>
 				
-				@foreach ($subjects as $subject)					
-					@if ($subject->category_id == $category->id)
-						<div class="col-md-3">
-							<a href="{{ route('subjects.show', $subject->id) }}">
+				@foreach ($matters as $matter)					
+					@if ($matter->category_id == $category->id)
+						<div class="col-md-2">
+							<a href="{{ route('matters.show', $matter->id) }}">
 								
 								<div class="thumbnail text-center">
-							      <img src="{{ asset("images/subjects/$subject->image") }}" alt="...">
-							        <div class="title-subject">{!! $subject->name !!}</div>
+							      <img src="{{ asset("images/matters/$matter->image") }}" alt="...">
+							        <div class="title-matter">{!! $matter->name !!}</div>
 							    </div>
 							</a>
 						</div>
 					@endif
 				@endforeach
-			</div>
 		</div>
 	@endforeach
 </div>

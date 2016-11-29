@@ -18,7 +18,7 @@
 				<tr class="text-center">
 					<td><b>{{ $tag->id }}</b></td>
 					<td>{{ $tag->name }}</td>
-					<td>{{ $tag->n_tags }}</td>
+					<td>{{ $tag->n_articles }}</td>
 					<td>
 						<a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </a>
 

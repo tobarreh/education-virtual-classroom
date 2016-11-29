@@ -8,7 +8,7 @@ class CreateTagsTable extends Migration
 {
     public function up()
     {
-         Schema::create('tags', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -32,7 +32,8 @@ class CreateTagsTable extends Migration
 
     public function down()
     {
-        Schema::drop('articles_tags');
+        Schema::drop('article_tag');
         Schema::drop('tags');
+        Schema::disableForeignKeyConstraints();
     }
 }

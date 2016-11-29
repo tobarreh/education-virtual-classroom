@@ -20,6 +20,10 @@ class TagsController extends Controller
 
         $tags = Tag::search($request->name)->orderBy('name', 'ASC')->paginate(10);
 
+        foreach ($tags as $tag) {
+           $tag->n_articles = count($tag->articles);
+        }
+
         return view("$me->type" .  '.tags.index')->with('tags', $tags);
     }
 
