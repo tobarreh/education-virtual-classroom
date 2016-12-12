@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
     protected $table = "topics";
-    protected $fillable = ['name', 'subject_id'];
+    protected $fillable = ['name', 'subject_id', 'description'];
 
     public function matter()
     {

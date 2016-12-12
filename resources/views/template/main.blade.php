@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css')}}">
 	<link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.css')}}">
 	<link rel="stylesheet" href="{{ asset('plugins/trumbowyg/ui/trumbowyg.css')}}">
+
 </head>
 
 <body>

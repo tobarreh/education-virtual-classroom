@@ -196,3 +196,30 @@
   padding-bottom: 10px;
   font-size: 15px !important;
 }
+
+/* Subject color */
+
+.icon.is-circle {
+    border: 3px solid currentColor;
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+.is-circle {
+    border-radius: 50%;
+}
+
+.icon {  
+  font-size: 21px;
+  height: 24px;
+  line-height: 24px;
+  width: 24px;
+}
+
+.icon, .icon.is-large, .icon.is-medium, .icon.is-small {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}

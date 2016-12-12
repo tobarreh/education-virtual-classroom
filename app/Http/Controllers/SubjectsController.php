@@ -69,41 +69,37 @@ class SubjectsController extends Controller
         $me = Auth::user();
 
 	 	$subject = Subject::find($id);
+        $matters = Matter::orderBy('name', 'ASC')->pluck('name', 'id');
+        $grades = Grade::orderBy('name', 'ASC')->pluck('name', 'id');
 
-        return view("$me->type" . '.subjects.edit')->with('subject', $subject);
+        return view("$me->type" . '.subjects.edit')
+            ->with('subject', $subject)
+            ->with('matters', $matters)
+            ->with('grades', $grades);
     }
 
     public function update(Request $request, $id)
     {
-    	$matter = Matter::find($id);
+    	$subject = Subject::find($id);
+        $subject->fill($request->all());
 
-        $matter->name = $request->name;
-        $matter->category_id = $request->category_id;
+        $matter = Matter::find($request->matter_id);
+        $grade = Grade::find($request->grade_id);
+        $subject->name = "$matter->name" . ' de ' . "$grade->name";
 
-        if (!empty($request->file('image'))) {
-            
-            $file = $request->file('image');       
-            $name = $matter->name . '_' . time() . '.' . $file->getClientOriginalExtension();
+        $subject->save();
 
-            $path = public_path() . '/images/matters';
-            $file->move($path, $name);
-
-            $matter->image = $name;
-        }
-
-        $matter->save();
-
-        Flash('La materia ' . $matter->name . ' ha sido actualizada correctamente', 'info');
-        return redirect()->route('matters.index');
+        Flash('La asignatura ' . $subject->name . ' ha sido actualizada correctamente', 'info');
+        return redirect()->route('subjects.index');
 
     }
 
     public function destroy($id)
     {
-    	$matter = Matter::find($id);
-        $matter->delete();
+    	$subject = Subject::find($id);
+        $subject->delete();
 
-        Flash('La materia ' . $matter->name . ' ha sido eliminada correctamente', 'info');
-        return redirect()->route("matters.index");
+        Flash('La asignatura ' . $subject->name . ' ha sido eliminada correctamente', 'info');
+        return redirect()->route("subjects.index");
     }
 }

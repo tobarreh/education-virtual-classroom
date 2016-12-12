@@ -47,7 +47,7 @@
 							</div>
 
 							<div class="col-md-2 col-md-offset-2">
-								{!! Form::date('birth_date', $user->birth_date, ['id' => 'birth_date', 'class' => 'form-control', 'placeholder' => 'yyyy-mm-dd']) !!}	
+								{!! Form::date('birth_date', $user->birth_date, ['id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'yyyy-mm-dd']) !!}	
 							</div>
 						@else
 							<div class="col-md-12">
@@ -211,5 +211,8 @@
 	 	no_results_text: "No hay opciones disponibles!",
 	 	disable_search: true
  	});
+	
+	
 </script>
+
 @endsection 

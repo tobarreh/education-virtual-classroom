@@ -3,7 +3,7 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Temas <span class="caret"></span></a>
 
   <ul class="dropdown-menu">
-    <div class="col-md-6"> 
+    <div class="col-md-6">
       <li><a href="#">Por materia</a></li>
       <li role="separator" class="divider"></li>
       @foreach ($matters as $matter)
@@ -23,5 +23,4 @@
       @endforeach
     </div>
   </ul>
-
 </li>

@@ -128,7 +128,7 @@ class ArticlesController extends Controller
         $article->fill($request->all());
         $article->save();
 
-        //$article->tags()->sync($article->tags);
+        $article->tags()->sync($article->tags);
 
         Flash('El articulo ' . $article->title . ' ha sido actualizado correctamente', 'info');
         return redirect()->route('articles.index');

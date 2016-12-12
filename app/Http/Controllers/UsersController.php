@@ -67,11 +67,18 @@ class UsersController extends Controller
 
     public function update(Request $request, $id)
     {
+
+
         //TODO corregir auth (pasar al construct)
         $me = Auth::user();
 
         $user = User::find($id);
         $user->fill($request->all());
+
+        if (empty($request->birth_date)) {
+            $user->birth_date = null;
+        }
+
         $user->save();
 
         if ($user->id == $me->id) {

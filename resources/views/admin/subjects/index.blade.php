@@ -9,6 +9,7 @@
 	<table class="table table-striped">
 		<thead class="text-center">
 			<th class="text-center">ID</th>
+			<th class="text-center">Color</th>
 			<th class="text-center">Materia</th>
 			<th class="text-center">Grado</th>
 			<th class="text-center">Temas</th>
@@ -19,6 +20,9 @@
 			@foreach ($subjects as $subject)
 				<tr class="text-center">
 					<td><b>{{ $subject->id }}</b></td>
+					<td>
+						<span class="is-circle icon" style="color: {{ $subject->color }}"></span>
+					</td>
 					<td>
 						<a href="{{ route('matters.show', $subject->matter->id) }}">{{ $subject->matter->name }}</a>
 					</td>

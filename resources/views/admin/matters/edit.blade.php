@@ -3,6 +3,8 @@
 @section('title', 'Editar materia: ' . "<b> $matter->name </b>")
 
 @section('content')
+<br />
+
 <div class="panel panel-body col-md-12">
 	{!! Form::open(['route' => ['matters.update', $matter], 'method' => 'PUT', 'files' => true]) !!}﻿
 

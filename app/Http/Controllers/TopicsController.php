@@ -22,7 +22,7 @@ class TopicsController extends Controller
     	//TODO corregir auth (pasar al construct)
         $me = Auth::user();
 
-        $topics = Topic::search($request->name)->orderBy('name', 'ASC')->paginate(10);    
+        $topics = Topic::search($request->name)->orderBy('id', 'ASC')->paginate(10);    
 
         foreach ($topics as $topic) {
            $topic->n_articles = count($topic->articles);
@@ -61,11 +61,11 @@ class TopicsController extends Controller
         $me = Auth::user();
 
 	 	$topic = Topic::find($id);
-        $matters = Matter::orderBy('name', 'ASC')->pluck('name', 'id');
+        $subjects = Subject::orderBy('name', 'ASC')->pluck('name', 'id');
 
         return view("$me->type" . '.topics.edit')
             ->with('topic', $topic)
-            ->with('matters', $matters);
+            ->with('subjects', $subjects);
     }
 
     public function update(Request $request, $id)

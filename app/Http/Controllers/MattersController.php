@@ -66,7 +66,7 @@ class MattersController extends Controller
         $grades = Grade::orderBy('name', 'ASC')->paginate(10);
         $matters = Matter::orderBy('name', 'ASC')->paginate(10);
         $matter = Matter::find($id);
-        $topics = Topic::topics_by_matter($id)->orderBy('name', 'ASC')->paginate(10);
+        $topics = Topic::topics_by_matter($id)->orderBy('id', 'ASC')->paginate(20);
         
         return view('common.matters.show')
             ->with('grades', $grades)
