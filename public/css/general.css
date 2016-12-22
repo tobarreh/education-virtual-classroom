@@ -9,7 +9,7 @@
 /* Profile */
 
 .user-info {
-  background-image: url("/images/profile/liquor2.jpg");
+  background-image: url("/images/profile/background/post-it.png");
 
   color: #FFF;
   background-size: cover;
@@ -42,7 +42,17 @@
 .user-pic {
     width: 80px;
     height: 80px;
-    padding: 15px 5px;
+    border-radius: 12px;    
+}
+
+
+.user-pic-max-container {
+    padding-top: 25%;
+    text-align: center;
+}
+
+.user-pic-max {
+    width: 50%;
 }
 
 .user-details {
@@ -93,6 +103,34 @@
 
 .textarea-limited {
   resize: vertical;
+}
+
+.input-pic {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.input-pic-text {
+  position: absolute;
+  font-size: 40px;
+  opacity: 0.8;
+  margin: 20px 20px auto;
+  text-shadow: 2px 2px 10px black;
+  cursor: pointer;
+}
+
+.user-pic-update {
+  position: absolute;
+  margin: 90px 10px auto; 
+}
+
+.user-pic-update-btn {
+  position: absolute;
+  margin: 70px 10px auto;  
 }
 
 /* Social links */

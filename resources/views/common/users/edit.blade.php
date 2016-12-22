@@ -2,137 +2,137 @@
 
 @section('content')
 <br />
-<div class="col-md-12 ">
+<div class="col-md-12">
 	<div class="panel panel-body">
-		{!! Form::open(['route' => ['users.update', $user], 'method' => 'PUT']) !!}﻿
+		{!! Form::open(['route' => ['users.update', $user], 'method' => 'PUT', 'files' => true]) !!}﻿
 			<h4>Informacion general</h4>
 			<hr>
 
 			@if ($me->type == 'admin')
 				<div class="form-group row">
 					<div class="col-md-12">
-						<div class="col-md-6">
+						<div class="col-md-2">
 							{!! Form::label('type', 'Usuario') !!}
 						</div>
-						<div class="col-md-2 col-md-offset-2">	
+						<div class="col-md-2 col-md-offset-6">	
 							{!! Form::select('type', ['admin' => 'Administrador', 'professor' => 'Profesor', 'student' => 'Estudiante'], $user->type, ['class' => 'form-control select-user-type']) !!}
 						</div>						
 					</div>
 				</div>
 			@endif
-				
-				<div class="form-group row">
-					<div class="col-md-12">
-						@if ($me->id == $user->id)	
-							<div class="col-md-6">
-								{!! Form::label('name', 'Nombre') !!}
-							</div>
 
-							<div class="col-md-4">	
-									{!! Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Nombre completo']) !!}	
-							</div>
-						@else
-							<div class="col-md-12">
-								<h4>{{ $user->name }}</h4>
-							</div>
-						@endif
-					</div>
-				</div>
+			<div class="form-group row">
+				<div class="col-md-12">
+					@if ($me->id == $user->id)	
+						<div class="col-md-2">
+							{!! Form::label('name', 'Nombre') !!}
+						</div>
 
-				<div class="form-group row">
-					<div class="col-md-12">	
-						@if ($me->id == $user->id)
-							<div class="col-md-6">
-								{!! Form::label('birth_date', 'Fecha de nacimiento') !!}
-							</div>
-
-							<div class="col-md-2 col-md-offset-2">
-								{!! Form::date('birth_date', $user->birth_date, ['id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'yyyy-mm-dd']) !!}	
-							</div>
-						@else
-							<div class="col-md-12">
-								<p><span class="glyphicon glyphicon-gift"> {{ $user->birth_date }} </span></p>
-							</div>
-						@endif
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<div class="col-md-12">
-						@if ($me->id == $user->id)
-							<div class="col-md-6">
-								{!! Form::label('email', 'Email') !!}
-							</div>
-
-							<div class="col-md-4"> 	
-								{!! Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'example@mail.com']) !!}
-							</div>
-						@else
-							<div class="col-md-12">
-								<p><span class="glyphicon glyphicon-envelope"> {{ $user->email }} </span></p>
-							</div>
-						@endif
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<div class="col-md-12">
-						@if ($me->id == $user->id)
-							<div class="col-md-6">
-								{!! Form::label('cell_phone', 'Telefono celular') !!}
-							</div>
-
-							<div class="col-md-4">	
-								{!! Form::text('cell_phone', $user->cell_phone, ['class' => 'form-control', 'placeholder' => '+598 091234567']) !!}
-							</div>
-						@else
-							<div class="col-md-12">
-								<p><span class="glyphicon glyphicon-phone"> {{ $user->cell_phone }} </span></p>
-							</div>
-						@endif
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<div class="col-md-12">
-						@if ($me->id == $user->id)
-							<div class="col-md-6">
-								{!! Form::label('city', 'Ciudad') !!}
-							</div>
-
-							<div class="form-group col-md-4"> 
-								{!! Form::text('city', $user->city, ['class' => 'form-control', 'placeholder' => 'Montevideo']) !!}
-							</div>
-						@else
-							<div class="col-md-12">
-								<p><span class="glyphicon glyphicon-home"> {{ $user->city }} </span></p>
-							</div>
-						@endif
-					</div>
-				</div>
-			
-				<div class="form-group row">
-					<div class="col-md-10">
+						<div class="col-md-4 col-md-offset-4">	
+								{!! Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Nombre completo']) !!}	
+						</div>
+					@else
 						<div class="col-md-12">
-							{!! Form::label('about_me', 'Sobre mi') !!}
+							<h4>{{ $user->name }}</h4>
+						</div>
+					@endif
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">	
+					@if ($me->id == $user->id)
+						<div class="col-md-2">
+							{!! Form::label('birth_date', 'Fecha de nacimiento') !!}
 						</div>
 
-						<div class="col-md-12"> 
-							@if ($me->id == $user->id)
-								{!! Form::textarea('about_me', $user->about_me, ['class' => 'form-control textarea-limited', 'placeholder' => 'Escribe algo sobre ti...']) !!}
-							@else
-								<div class="col-md-12">
-									@if (empty($user->about_me))
-										<p>No hay informacion</p>
-									@else
-										<p>{{ $user->about_me }}</p>
-									@endif
-								</div>
-							@endif	
+						<div class="col-md-2 col-md-offset-6">
+							{!! Form::date('birth_date', $user->birth_date, ['id' => 'datepicker', 'class' => 'form-control', 'placeholder' => 'yyyy-mm-dd']) !!}	
 						</div>
+					@else
+						<div class="col-md-12">
+							<p><span class="glyphicon glyphicon-gift"> {{ $user->birth_date }} </span></p>
+						</div>
+					@endif
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					@if ($me->id == $user->id)
+						<div class="col-md-2">
+							{!! Form::label('email', 'Email') !!}
+						</div>
+
+						<div class="col-md-4 col-md-offset-4"> 	
+							{!! Form::email('email', $user->email, ['class' => 'form-control', 'placeholder' => 'example@mail.com']) !!}
+						</div>
+					@else
+						<div class="col-md-12">
+							<p><span class="glyphicon glyphicon-envelope"> {{ $user->email }} </span></p>
+						</div>
+					@endif
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					@if ($me->id == $user->id)
+						<div class="col-md-2">
+							{!! Form::label('cell_phone', 'Telefono celular') !!}
+						</div>
+
+						<div class="col-md-4 col-md-offset-4">	
+							{!! Form::text('cell_phone', $user->cell_phone, ['class' => 'form-control', 'placeholder' => '+598 091234567']) !!}
+						</div>
+					@else
+						<div class="col-md-12">
+							<p><span class="glyphicon glyphicon-phone"> {{ $user->cell_phone }} </span></p>
+						</div>
+					@endif
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					@if ($me->id == $user->id)
+						<div class="col-md-2">
+							{!! Form::label('city', 'Ciudad') !!}
+						</div>
+
+						<div class="form-group col-md-4 col-md-offset-4"> 
+							{!! Form::text('city', $user->city, ['class' => 'form-control', 'placeholder' => 'Montevideo']) !!}
+						</div>
+					@else
+						<div class="col-md-12">
+							<p><span class="glyphicon glyphicon-home"> {{ $user->city }} </span></p>
+						</div>
+					@endif
+				</div>
+			</div>
+		
+			<div class="form-group row">
+				<div class="col-md-10">
+					<div class="col-md-12">
+						{!! Form::label('about_me', 'Sobre mi') !!}
+					</div>
+
+					<div class="col-md-12"> 
+						@if ($me->id == $user->id)
+							{!! Form::textarea('about_me', $user->about_me, ['class' => 'form-control textarea-limited', 'placeholder' => 'Escribe algo sobre ti...']) !!}
+						@else
+							<div class="col-md-12">
+								@if (empty($user->about_me))
+									<p>No hay informacion</p>
+								@else
+									<p>{{ $user->about_me }}</p>
+								@endif
+							</div>
+						@endif	
 					</div>
 				</div>
-				<br />
+			</div>
+			<br />
 			
 			@if ($me->id == $user->id)
 				<h4>Social</h4>

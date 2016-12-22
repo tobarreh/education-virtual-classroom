@@ -3,32 +3,33 @@
 @section('title', 'Nuevo articulo')
 
 @section('content')
-<div class="panel panel-body col-md-12">	
+<div class="panel panel-body col-md-12">
+
 	{!! Form::open(['route' => 'articles.store', 'method' => 'POST']) !!}
 
 		<div class="form-group row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				{!! Form::label('title', 'Titulo') !!}
 			</div>
-			<div class="col-md-4 col-md-offset-3">
+			<div class="col-md-5 col-md-offset-3">
 				{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Titulo del articulo']) !!}
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				{!! Form::label('matter_id', 'Materia') !!}
 			</div>
-			<div class="col-md-2 col-md-offset-5">
+			<div class="col-md-3 col-md-offset-5">
 				{!! Form::select('matter_id', $matters, null, ['id' => 'subject', 'class' => 'form-control selector', null, 'required']) !!}
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				{!! Form::label('topic_id', 'Tema') !!}
 			</div>
-			<div class="col-md-2 col-md-offset-5">
+			<div class="col-md-3 col-md-offset-5">
 				{!! Form::select('topic_id', $topics, null, ['id' => 'topic', 'class' => 'form-control selector', null, 'required']) !!}
 			</div>
 		</div>
@@ -52,18 +53,19 @@
 		</div>
 
 		<div class="form-group row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 				{!! Form::label('tags', 'Tags') !!}
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-7 col-md-offset-1">
 				{!! Form::select('tags[]', $tags, null, ['class' => 'form-control select-tag', 'multiple', '']) !!}
 			</div>
 		</div>
 
-		<div class="form-group">
-			{!! Form::submit('Crear', ['class' => 'btn btn-primary pull-right']) !!}
+		<div class="form-group row">
+			<div class="col-md-12">
+				{!! Form::submit('Crear', ['class' => 'btn btn-primary pull-right']) !!}
+			</div>
 		</div>
-
 	{!! Form::close() !!}
 </div>
 @endsection

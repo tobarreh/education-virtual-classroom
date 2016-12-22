@@ -57,7 +57,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('users.show', Auth::user()->id) }}">Perfil</a></li>
+                                <li><a href="{{ route('users.edit', Auth::user()->id) }}">Editar perfil</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();

@@ -59,21 +59,35 @@ class UsersController extends Controller
         $me = Auth::user();
 
         $user = User::find($id);
+
+        $grades = Grade::orderBy('name', 'ASC')->paginate(10);
+        $matters = Matter::orderBy('name', 'ASC')->paginate(10);
         
         return view('common.users.edit')
             ->with('me', $me)
-            ->with('user', $user);   
+            ->with('user', $user)
+            ->with('grades', $grades)
+            ->with('matters', $matters);
     }
 
     public function update(Request $request, $id)
     {
-
-
         //TODO corregir auth (pasar al construct)
         $me = Auth::user();
 
         $user = User::find($id);
         $user->fill($request->all());
+
+        if (!empty($request->file('image'))) {
+            
+            $file = $request->file('image');       
+            $name = $user->name . '_' . time() . '.' . $file->getClientOriginalExtension();
+
+            $path = public_path() . '/images/profile/user';
+            $file->move($path, $name);
+
+            $user->image = 'images/profile/user/' . $name;
+        }
 
         if (empty($request->birth_date)) {
             $user->birth_date = null;

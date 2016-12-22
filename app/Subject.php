@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     protected $table = "subjects";
-    protected $fillable = ['name', 'grade_id', 'matter_id'];
+    protected $fillable = ['color', 'name', 'grade_id', 'matter_id'];
 
     public function grade()
     {

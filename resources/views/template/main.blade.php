@@ -2,7 +2,7 @@
 <html land="es">
 <head>
 	<main charset="UTF=8">
-	<title>| @yield('title', '')</title>
+	<title> | @yield('title', '')</title>
 	
 	<link rel="stylesheet" href="{{ asset('css/general.css')}}">
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css')}}">
@@ -45,7 +45,7 @@
 	<script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>
 	<script src="{{ asset('plugins/chosen/chosen.jquery.js') }}"></script>
 	<script src="{{ asset('plugins/trumbowyg/trumbowyg.js') }}"></script>
-
+	
 	@yield('js')
 </body>
 </html>

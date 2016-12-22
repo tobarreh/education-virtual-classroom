@@ -3993,7 +3993,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  border-bottom: 2px solid #337AB7;
+  border-bottom: 2px solid #337AB7; 
   /* background-color: #eee; */
 }
 .nav > li.disabled > a {

@@ -1,7 +1,17 @@
 @extends('template.main')
 
 @section('content')
-<br />
+
+@if ($me->id != $user->id and $me->type == 'admin')
+	<div class="panel-heading pull-right">
+		<a href="{{ route('users.edit', $user->id) }} " class="btn btn-default">
+			<span class="glyphicon glyphicon-pencil"></span>   
+			Editar  
+	 	</a>
+	</div>
+@else
+	<br />
+@endif
 
 <div class="col-md-12">
 	<div class="panel panel-body">
@@ -29,27 +39,6 @@
 				</div>	
 			</div>
 			
-			<div class="col-md-2">
-				@if(isset($me->id))	
-					@if ($me->id == $user->id or $me->type == 'admin')
-						<ul class="nav navbar-right pull-right">
-		                    <li class="dropdown">
-		                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-		                            <span class="caret"></span>
-		                        </a>
-
-		                        <ul class="dropdown-menu" role="menu">
-		                            <li>
-		                            	<a href="{{ route('users.edit', $user->id) }}">
-		                            		<span class="glyphicon glyphicon-pencil" aria-hidden="true"> Editar</span>
-		                            	</a>
-		                        	</li>
-		                        </ul>
-		                    </li>
-		                </ul>
-	                @endif
-                @endif
-			</div>
 		</div>
 	</div>
 </div>

@@ -48,9 +48,9 @@ class MattersController extends Controller
 
         //Save image locally
         $file = $request->file('image');
-        
+
         $name = $matter->name . '_' . time() . '.' . $file->getClientOriginalExtension();
-        $matter->image = $name;
+        $matter->image = 'images/matters/' . $name;
         
         $path = public_path() . '/images/matters';
         $file->move($path, $name);
@@ -103,7 +103,7 @@ class MattersController extends Controller
             $path = public_path() . '/images/matters';
             $file->move($path, $name);
 
-            $matter->image = $name;
+            $matter->image = 'images/matters/' . $name;
         }
 
         $matter->save();
